@@ -1,0 +1,8 @@
+# Ignore compiled binaries
+*.bin
+
+# Ignore all files except .cpp
+*
+!*.cpp
+!.gitignore
+!*/
