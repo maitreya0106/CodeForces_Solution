@@ -10,16 +10,16 @@ void solve() {
         cin >> a[i];
     }
 
-    // cnt1 maps a value to the number of elements in 'a' that can reach it
+
     map<ll, int> cnt1;
-    // cnt2 maps a value to the total number of operations required to reach it
+
     map<ll, ll> cnt2;
 
     ll x = a[0];
     set<ll> s;
     ll c = 0;
 
-    // Process the first element
+
     while (s.find(x) == s.end()) {
         cnt1[x]++;
         cnt2[x] += c;
@@ -33,14 +33,14 @@ void solve() {
         c++;
     }
 
-    // Process the remaining elements
+
     for (int i = 1; i < n; i++) {
         x = a[i];
-        s.clear(); // equivalent to Python's s = set()
+        s.clear(); 
         c = 0;
         
         while (s.find(x) == s.end()) {
-            // Only care about values that the first element could also reach
+
             if (cnt1.count(x)) {
                 cnt1[x]++;
                 cnt2[x] += c;
@@ -56,9 +56,9 @@ void solve() {
         }
     }
 
-    ll ans = 1e18; // equivalent to Python's 10**18
+    ll ans = 1e18;
     
-    // Find the minimum operations among targets reachable by ALL 'n' elements
+
     for (auto const& [k, v] : cnt1) {
         if (v == n) {
             ans = min(ans, cnt2[k]);
@@ -69,7 +69,7 @@ void solve() {
 }
 
 int main() {
-    // Fast I/O
+
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
