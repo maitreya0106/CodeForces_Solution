@@ -2,18 +2,36 @@
 using namespace std;
 #define ll long long
 
+
+ll computeXOR(ll n) {
+    if (n < 0) return 0;
+    ll mod = n % 4;
+    if (mod == 0) return n;
+    if (mod == 1) return 1;
+    if (mod == 2) return n + 1;
+    return 0; // mod == 3
+}
+
 void solve(){
-    ll mex, xo;
-    cin >> mex >> xo;
-    if(mex==1&&xo==1){
-        cout << mex+2 << endl;
+    ll a, b;
+    cin >> a >> b;
+    ll ans = a;
+    ll xr = computeXOR(a-1);
+
+    xr = b^xr;
+    if(xr==0){
+        cout << ans << endl;
         return;
     }
-    if(xo<=mex){
-        cout << mex << endl;
+    if(xr==a){
+        cout << ans+2 << endl;
         return;
     }
-    cout << mex+1 << endl;
+    else{
+        cout << ans +1 << endl;
+        return;
+    }
+
 
 }
 
