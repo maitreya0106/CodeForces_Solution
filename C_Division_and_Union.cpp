@@ -17,41 +17,25 @@ void solve() {
         cin >> l >> r;
         a[i]={l,r,i};
     }
-    vector<ll>ans(n,0);
+    vector<ll>ans(n,2);
     sort(a.begin(),a.end());
-    ll mx1 = -1;
-    ll mx2 = -1;
+    ll maxr = a[0][1];
+
+    bool flag = false;
     for(ll i=0; i<n; i++){
-        if(a[i][0]>mx1&&a[i][0]>mx2){
-            if(mx1>=mx2){
-                mx1 = a[i][1];
-                ans[a[i][2]]=1;
-            }
-            else{
-                mx2 = a[i][1];
-                ans[a[i][2]]=2;
-            }
+        if(a[i][0]>maxr){
+            flag = true;
+            break;
         }
-        else if(a[i][0]>mx1){
-            mx1 = a[i][1];
-            ans[a[i][2]]=1;
-        }
-        else if(a[i][0]>mx2){
-            mx2 = a[i][1];
-            ans[a[i][2]]=2;
-        }
-        else{
-            cout << -1 << endl;
-            return;
-        }
+        ans[a[i][2]]=1;
+        maxr = max(a[i][1],maxr);
     }
-    ll cnt1 = 0;
-    for(ll i=0; i<n; i++){
-        if(ans[i]==1)cnt1++;
+    if(!flag){
+        cout << "-1\n"; 
+        return;
     }
-    if(cnt1==n) ans[0]=2;
-    for(ll i=0; i<n; i++){
-        cout << ans[i] << ' ';
+    for(auto it: ans){
+        cout << it << ' ';
     }
     cout << endl;
 
