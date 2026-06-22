@@ -8,24 +8,22 @@ const ll MOD = 1e9+7;
 
 
 void solve() {
-    ll n, x, y;
-    cin >> n >> x >> y;
-    ll ans = 0;
-    map<string,ll> mp;
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
     for(ll i=0; i<n; i++){
-        ll num;
-        cin >> num;
-        ll d1 = num%x;
-        ll d2 = num%y;
-        ll d4 = (x-d1)%x;
-
-        string f1 = to_string(d4)+'.'+to_string(d2);
-
-        ans+= mp[f1];
-
-
-        string s = to_string(d1)+'.'+to_string(d2);
-        mp[s]++;
+        cin >> a[i];
+    }
+    vector<ll> inc;
+    ll ans = 0;
+    for(ll i=0; i<n; i++){
+        
+        if(a[i]<i+1){
+            auto it = lower_bound(inc.begin(),inc.end(),a[i]);
+            ll dis = it-inc.begin();
+            ans+=dis;
+            inc.push_back(i+1);
+        }
     }
     cout << ans << endl;
 
