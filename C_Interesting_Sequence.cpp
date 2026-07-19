@@ -4,22 +4,26 @@ using namespace std;
 
 void solve() {
     ll n, x;
-    cin >> n >> x;
-    ll ans = 0;
-    for(ll i=0; i<=60; i++){
-        ll n1 = n&i;
-        ll x1 = n&i;
-        if(n1==x1) continue;
-        if (x1==1&&n1==0){
-            cout << -1 << endl;
-            return;
-        }
-        else{
-            ans+=1<<i;
-        }
-    }
-    cout << ans << endl;
+				cin >> n >> x;
 
+				if (n == x) {
+
+						cout << n << '\n';
+						return;
+				}
+
+				ll ans = -1;
+				for (int i = 0; i <= 61; i++) {
+
+						if (((n >> i) << i) == x) {
+
+								ll m = x | (1LL << i);
+								ans = (m >= n) ? m : -1; 
+								break; 
+						}
+				}
+
+				cout << ans << '\n';
 }
 
 int main() {
